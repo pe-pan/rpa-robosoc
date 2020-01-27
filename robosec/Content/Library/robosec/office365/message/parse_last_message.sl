@@ -27,6 +27,12 @@ flow:
         navigate:
           - FAILURE: on_failure
           - SUCCESS: SUCCESS
+  outputs:
+    - subject: '${subject}'
+    - recipient_email: '${recipient_email}'
+    - sender_email: '${sender_email}'
+    - body: '${body}'
+    - links: '${links}'
   results:
     - FAILURE
     - SUCCESS
