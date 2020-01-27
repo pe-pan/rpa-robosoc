@@ -55,7 +55,7 @@ flow:
             - second_string: html
             - ignore_case: null
         navigate:
-          - SUCCESS: parse_html
+          - SUCCESS: parse_html_links
           - FAILURE: on_failure
     - parse_html_links:
         do:
@@ -72,7 +72,7 @@ flow:
         publish:
           - attachment_string: '${read_text}'
         navigate:
-          - SUCCESS: parse_attachment
+          - SUCCESS: parse_mime_message
           - FAILURE: on_failure
     - parse_mime_message:
         do:
@@ -84,7 +84,7 @@ flow:
           - from
           - body: '${html_body}'
         navigate:
-          - SUCCESS: parse_html
+          - SUCCESS: parse_html_links
     - is_attachment:
         do:
           io.cloudslang.base.strings.string_equals:
@@ -93,7 +93,7 @@ flow:
             - ignore_case: 'true'
         navigate:
           - SUCCESS: read_from_file
-          - FAILURE: parse_json_email
+          - FAILURE: parse_json_message
   outputs:
     - subject
     - to
@@ -109,13 +109,13 @@ extensions:
       get_email:
         x: 64
         'y': 104
-      parse_json_email:
+      parse_json_mesasge:
         x: 261
         'y': 88
       is_html:
         x: 470
         'y': 63
-      parse_html:
+      parse_html_links:
         x: 622
         'y': 166
         navigate:
@@ -125,7 +125,7 @@ extensions:
       read_from_file:
         x: 260
         'y': 306
-      parse_attachment:
+      parse_mime_message:
         x: 484
         'y': 304
       is_attachment:
@@ -136,3 +136,4 @@ extensions:
         8fda87ed-fefe-d9da-59a0-bd753526890d:
           x: 772
           'y': 160
+
