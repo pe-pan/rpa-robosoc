@@ -12,7 +12,8 @@
 #! @input message_id: Message identifier.
 #!
 #! @output subject: The email/attachment subject.
-#! @output recipient_email: The
+#! @output recipient_email: The email/attachment to header.
+#! @output sender_email: The email/attachment from header.
 #! @output body: The email/attachment body (presumably in HTML format)
 #! @output links: List of links parsed out of the email/attachment body.
 #!!#
