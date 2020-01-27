@@ -18,6 +18,12 @@ flow:
           robosec.office365.message.parse_message:
             - email_address: '${email_address}'
             - message_id: '${message_id}'
+        publish:
+          - subject
+          - recipient_email
+          - sender_email
+          - body
+          - links
         navigate:
           - FAILURE: on_failure
           - SUCCESS: SUCCESS
