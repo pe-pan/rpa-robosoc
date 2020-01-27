@@ -109,7 +109,7 @@ extensions:
       get_email:
         x: 64
         'y': 104
-      parse_json_mesasge:
+      parse_json_message:
         x: 261
         'y': 88
       is_html:
