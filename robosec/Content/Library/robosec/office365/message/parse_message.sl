@@ -44,6 +44,12 @@ flow:
             - message_id: '${message_id}'
             - o_data_query: '$select=subject,body,sender,toRecipients,hasAttachments'
             - file_path: '${folder_name}'
+            - proxy_host: "${get_sp('proxy_host')}"
+            - proxy_port: "${get_sp('proxy_port')}"
+            - proxy_username: "${get_sp('proxy_username')}"
+            - proxy_password:
+                value: "${get_sp('proxy_password')}"
+                sensitive: true
         publish:
           - json: '${return_result}'
         navigate:

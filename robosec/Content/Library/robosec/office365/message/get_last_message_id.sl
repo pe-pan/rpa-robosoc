@@ -15,6 +15,12 @@ flow:
             - email_address: '${email_address}'
             - count: '1'
             - o_data_query: $select=subject
+            - proxy_host: "${get_sp('proxy_host')}"
+            - proxy_port: "${get_sp('proxy_port')}"
+            - proxy_username: "${get_sp('proxy_username')}"
+            - proxy_password:
+                value: "${get_sp('proxy_password')}"
+                sensitive: true
         publish:
           - message_id: '${message_id_list}'
         navigate:
