@@ -10,7 +10,9 @@ properties:
   - client_secret:
       value: ''
       sensitive: true
-  - mailbox_folder: Inbox
+  - mailbox_folder:
+      value: Inbox
+      sensitive: false
   - proxy_host: web-proxy.eu.softwaregrp.net
   - proxy_port: '8080'
   - proxy_username: ''
