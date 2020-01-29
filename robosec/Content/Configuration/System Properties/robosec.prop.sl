@@ -1,3 +1,8 @@
+########################################################################################################################
+#!!
+#! @system_property mailbox_folder: Leave empty for querying over all mailbox folders
+#!!#
+########################################################################################################################
 namespace: ''
 properties:
   - tenant: rpamf.onmicrosoft.com
@@ -5,6 +10,7 @@ properties:
   - client_secret:
       value: ''
       sensitive: true
+  - mailbox_folder: Inbox
   - proxy_host: web-proxy.eu.softwaregrp.net
   - proxy_port: '8080'
   - proxy_username: ''

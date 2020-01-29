@@ -13,7 +13,8 @@ flow:
                 value: "${get_sp('client_secret')}"
                 sensitive: true
             - email_address: '${email_address}'
-            - count: '1'
+            - folder_id: "${get_sp('mailbox_folder')}"
+			- count: '1'
             - o_data_query: $select=subject
             - proxy_host: "${get_sp('proxy_host')}"
             - proxy_port: "${get_sp('proxy_port')}"
