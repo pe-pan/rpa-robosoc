@@ -14,7 +14,7 @@ flow:
                 sensitive: true
             - email_address: '${email_address}'
             - folder_id: "${get_sp('mailbox_folder')}"
-			- count: '1'
+            - count: '1'
             - o_data_query: $select=subject
             - proxy_host: "${get_sp('proxy_host')}"
             - proxy_port: "${get_sp('proxy_port')}"
