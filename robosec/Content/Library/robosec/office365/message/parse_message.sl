@@ -53,7 +53,7 @@ flow:
         publish:
           - json: '${return_result}'
         navigate:
-          - SUCCESS: get_first_file
+          - SUCCESS: parse_json_message
           - FAILURE: on_failure
     - parse_json_message:
         do:
@@ -67,8 +67,9 @@ flow:
           - recipient_email
           - content_type
           - body
+          - has_attachments
         navigate:
-          - SUCCESS: is_html
+          - SUCCESS: has_attachments
     - is_html:
         do:
           io.cloudslang.base.strings.string_equals:
@@ -120,13 +121,22 @@ flow:
             - bool_value: '${str(len(file_name) > 0)}'
         navigate:
           - 'TRUE': read_from_file
-          - 'FALSE': parse_json_message
+          - 'FALSE': is_html
     - remove_temp_folder:
         do:
           robosec.office365.message.subflows.remove_temp_folder:
             - folder_name: '${folder_name}'
         navigate:
           - SUCCESS: parse_html_links
+    - has_attachments:
+        do:
+          io.cloudslang.base.strings.string_equals:
+            - first_string: '${has_attachments}'
+            - second_string: 'true'
+            - ignore_case: 'true'
+        navigate:
+          - SUCCESS: get_first_file
+          - FAILURE: is_html
   outputs:
     - subject: '${subject}'
     - recipient_email: '${recipient_email}'
@@ -146,8 +156,11 @@ extensions:
         x: 489
         'y': 315
       read_from_file:
-        x: 360
+        x: 243
         'y': 319
+      has_attachments:
+        x: 377
+        'y': 25
       parse_html_links:
         x: 767
         'y': 172
@@ -156,20 +169,20 @@ extensions:
             targetId: 8fda87ed-fefe-d9da-59a0-bd753526890d
             port: SUCCESS
       get_email:
-        x: 226
-        'y': 44
+        x: 31
+        'y': 182
       get_first_file:
-        x: 43
-        'y': 200
+        x: 169
+        'y': 185
       create_temp_folder:
         x: 47
         'y': 48
       includes_attachment:
-        x: 261
-        'y': 179
+        x: 457
+        'y': 159
       parse_json_message:
-        x: 356
-        'y': 40
+        x: 175
+        'y': 38
       remove_temp_folder:
         x: 623
         'y': 172
@@ -178,3 +191,4 @@ extensions:
         8fda87ed-fefe-d9da-59a0-bd753526890d:
           x: 914
           'y': 178
+

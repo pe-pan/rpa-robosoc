@@ -23,6 +23,8 @@ operation:
       body = data['body']
       content_type = body['contentType']
       content = body['content']
+
+      has_attachments = str(data['hasAttachments'])
   outputs:
     - message_id: '${message_id}'
     - subject: '${subject}'
@@ -32,5 +34,7 @@ operation:
     - recipient_email: '${recipient_email}'
     - content_type: '${content_type}'
     - body: '${content}'
+    - has_attachments: '${has_attachments}'
   results:
     - SUCCESS
+
