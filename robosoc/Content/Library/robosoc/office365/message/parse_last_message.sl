@@ -32,7 +32,7 @@ flow:
           - message_id
         navigate:
           - FAILURE: on_failure
-          - SUCCESS: parse_message
+          - SUCCESS: message_found
     - parse_message:
         do:
           robosoc.office365.message.subflows.parse_message:
@@ -47,6 +47,13 @@ flow:
         navigate:
           - FAILURE: on_failure
           - SUCCESS: SUCCESS
+    - message_found:
+        do:
+          io.cloudslang.base.utils.is_true:
+            - bool_value: '${str(len(message_id) > 0)}'
+        navigate:
+          - 'TRUE': parse_message
+          - 'FALSE': FAILURE
   outputs:
     - subject: '${subject}'
     - recipient_email: '${recipient_email}'
@@ -70,8 +77,19 @@ extensions:
           9f52e813-a366-88ef-88d6-3573fd2d3e77:
             targetId: 3b8ded9a-5758-df3e-dc7d-d60be3de819d
             port: SUCCESS
+      message_found:
+        x: 192
+        'y': 279
+        navigate:
+          a26323c6-b844-9a65-4190-4c916e09441a:
+            targetId: 7244f730-5c71-0935-3ddc-a7e56f130046
+            port: 'FALSE'
     results:
       SUCCESS:
         3b8ded9a-5758-df3e-dc7d-d60be3de819d:
           x: 384
           'y': 80
+      FAILURE:
+        7244f730-5c71-0935-3ddc-a7e56f130046:
+          x: 384
+          'y': 301
