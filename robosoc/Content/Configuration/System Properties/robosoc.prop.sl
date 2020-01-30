@@ -13,8 +13,8 @@ properties:
   - mailbox_folder:
       value: Inbox
       sensitive: false
-  - proxy_host: web-proxy.eu.softwaregrp.net
-  - proxy_port: '8080'
+  - proxy_host: ''
+  - proxy_port: ''
   - proxy_username: ''
   - proxy_password:
       value: ''
