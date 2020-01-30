@@ -1,7 +1,6 @@
 ########################################################################################################################
 #!!
-#! @description: It parses the last received e-mail meeting filter criteria and return values out of it including links it contains (provided the e-mail is in html format). If there is an e-mail attached to this e-mail, it parses the attachment instead.
-#!                
+#! @description: It parses the last received e-mail meeting filter criteria and return values out of it including links it contains (provided the e-mail is in html format). If there is an e-mail attached to this e-mail, it parses the attachment instead. The attachment must have *.eml extension.
 #!               Limitations:
 #!               - it assumes there is one attachment (does not care about the others)
 #!               - it assumes the attachment is an e-mail in MIME format (would fail if it's not)
@@ -95,3 +94,4 @@ extensions:
         d7d3b569-fff5-bb7b-92dc-db34f2149137:
           x: 400
           'y': 278
+

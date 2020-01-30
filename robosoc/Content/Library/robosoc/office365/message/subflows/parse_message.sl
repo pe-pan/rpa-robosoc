@@ -77,8 +77,8 @@ flow:
             - second_string: html
             - ignore_case: null
         navigate:
-          - SUCCESS: remove_temp_folder
-          - FAILURE: on_failure
+          - SUCCESS: parse_html_links
+          - FAILURE: remove_temp_folder
     - parse_html_links:
         do:
           robosoc.office365.message.subflows.parse.parse_html_links:
@@ -86,7 +86,7 @@ flow:
         publish:
           - links
         navigate:
-          - SUCCESS: SUCCESS
+          - SUCCESS: remove_temp_folder
     - read_from_file:
         do:
           io.cloudslang.base.filesystem.read_from_file:
@@ -106,7 +106,7 @@ flow:
           - sender_email: '${header_from}'
           - body: '${html_body}'
         navigate:
-          - SUCCESS: remove_temp_folder
+          - SUCCESS: parse_html_links
     - get_first_file:
         do:
           robosoc.office365.message.subflows.temp_folder.get_first_file:
@@ -127,7 +127,7 @@ flow:
           robosoc.office365.message.subflows.temp_folder.remove_temp_folder:
             - folder_name: '${folder_name}'
         navigate:
-          - SUCCESS: parse_html_links
+          - SUCCESS: SUCCESS
     - has_attachments:
         do:
           io.cloudslang.base.strings.string_equals:
@@ -150,8 +150,8 @@ extensions:
   graph:
     steps:
       is_html:
-        x: 554
-        'y': 26
+        x: 583
+        'y': 22
       parse_mime_message:
         x: 489
         'y': 315
@@ -162,12 +162,8 @@ extensions:
         x: 377
         'y': 25
       parse_html_links:
-        x: 767
-        'y': 172
-        navigate:
-          f0bfd7ad-6b2a-55dc-fd59-f5a637af5cec:
-            targetId: 8fda87ed-fefe-d9da-59a0-bd753526890d
-            port: SUCCESS
+        x: 621
+        'y': 168
       get_email:
         x: 31
         'y': 182
@@ -184,11 +180,15 @@ extensions:
         x: 175
         'y': 38
       remove_temp_folder:
-        x: 623
-        'y': 172
+        x: 767
+        'y': 166
+        navigate:
+          d2a2c706-a52b-674f-c5c3-72c6e869b37f:
+            targetId: 8fda87ed-fefe-d9da-59a0-bd753526890d
+            port: SUCCESS
     results:
       SUCCESS:
         8fda87ed-fefe-d9da-59a0-bd753526890d:
-          x: 914
-          'y': 178
+          x: 916
+          'y': 162
 

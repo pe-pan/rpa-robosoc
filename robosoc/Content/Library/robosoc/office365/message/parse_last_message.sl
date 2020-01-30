@@ -1,7 +1,6 @@
 ########################################################################################################################
 #!!
-#! @description: It parses the last received e-mail and return values out of it including links it contains (provided the e-mail is in html format). If there is an e-mail attached to this e-mail, it parses the attachment instead.
-#!                
+#! @description: It parses the last received e-mail and return values out of it including links it contains (provided the e-mail is in html format). If there is an e-mail attached to this e-mail, it parses the attachment instead. The attachment must have *.eml extension.
 #!               Limitations:
 #!               - it assumes there is one attachment (does not care about the others)
 #!               - it assumes the attachment is an e-mail in MIME format (would fail if it's not)
@@ -85,11 +84,12 @@ extensions:
             targetId: 7244f730-5c71-0935-3ddc-a7e56f130046
             port: 'FALSE'
     results:
-      SUCCESS:
-        3b8ded9a-5758-df3e-dc7d-d60be3de819d:
-          x: 384
-          'y': 80
       FAILURE:
         7244f730-5c71-0935-3ddc-a7e56f130046:
           x: 384
           'y': 301
+      SUCCESS:
+        3b8ded9a-5758-df3e-dc7d-d60be3de819d:
+          x: 384
+          'y': 80
+
