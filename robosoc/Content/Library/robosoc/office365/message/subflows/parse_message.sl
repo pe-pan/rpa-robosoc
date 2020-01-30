@@ -18,7 +18,7 @@
 #! @output links: List of links parsed out of the email/attachment body.
 #!!#
 ########################################################################################################################
-namespace: robosoc.office365.message
+namespace: robosoc.office365.message.subflows
 flow:
   name: parse_message
   inputs:
@@ -27,7 +27,7 @@ flow:
   workflow:
     - create_temp_folder:
         do:
-          robosoc.office365.message.subflows.create_temp_folder: []
+          robosoc.office365.message.subflows.temp_folder.create_temp_folder: []
         publish:
           - folder_name
         navigate:
@@ -57,7 +57,7 @@ flow:
           - FAILURE: on_failure
     - parse_json_message:
         do:
-          robosoc.office365.message.parse_json_message:
+          robosoc.office365.message.subflows.parse.parse_json_message:
             - json_string: '${json}'
         publish:
           - subject
@@ -81,7 +81,7 @@ flow:
           - FAILURE: on_failure
     - parse_html_links:
         do:
-          robosoc.office365.message.parse_html_links:
+          robosoc.office365.message.subflows.parse.parse_html_links:
             - html_string: '${body}'
         publish:
           - links
@@ -98,7 +98,7 @@ flow:
           - FAILURE: on_failure
     - parse_mime_message:
         do:
-          robosoc.office365.message.parse_mime_message:
+          robosoc.office365.message.subflows.parse.parse_mime_message:
             - attachment_string: '${attachment_string}'
         publish:
           - subject: '${header_subject}'
@@ -109,7 +109,7 @@ flow:
           - SUCCESS: remove_temp_folder
     - get_first_file:
         do:
-          robosoc.office365.message.subflows.get_first_file:
+          robosoc.office365.message.subflows.temp_folder.get_first_file:
             - folder_name: '${folder_name}'
         publish:
           - file_name
@@ -124,7 +124,7 @@ flow:
           - 'FALSE': is_html
     - remove_temp_folder:
         do:
-          robosoc.office365.message.subflows.remove_temp_folder:
+          robosoc.office365.message.subflows.temp_folder.remove_temp_folder:
             - folder_name: '${folder_name}'
         navigate:
           - SUCCESS: parse_html_links

@@ -1,4 +1,4 @@
-namespace: robosoc.office365.message
+namespace: robosoc.office365.message.subflows.parse
 operation:
   name: parse_json_message
   inputs:

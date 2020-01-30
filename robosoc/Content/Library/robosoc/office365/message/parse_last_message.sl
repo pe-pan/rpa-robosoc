@@ -26,7 +26,7 @@ flow:
   workflow:
     - get_last_message_id:
         do:
-          robosoc.office365.message.get_last_message_id:
+          robosoc.office365.message.subflows.get_last_message_id:
             - email_address: '${email_address}'
         publish:
           - message_id
@@ -35,7 +35,7 @@ flow:
           - SUCCESS: parse_message
     - parse_message:
         do:
-          robosoc.office365.message.parse_message:
+          robosoc.office365.message.subflows.parse_message:
             - email_address: '${email_address}'
             - message_id: '${message_id}'
         publish:

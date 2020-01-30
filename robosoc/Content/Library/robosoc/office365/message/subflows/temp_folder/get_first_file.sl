@@ -1,4 +1,4 @@
-namespace: robosoc.office365.message.subflows
+namespace: robosoc.office365.message.subflows.temp_folder
 operation:
   name: get_first_file
   inputs:

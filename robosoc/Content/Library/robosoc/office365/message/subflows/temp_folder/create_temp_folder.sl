@@ -1,4 +1,4 @@
-namespace: robosoc.office365.message.subflows
+namespace: robosoc.office365.message.subflows.temp_folder
 operation:
   name: create_temp_folder
   python_action:
