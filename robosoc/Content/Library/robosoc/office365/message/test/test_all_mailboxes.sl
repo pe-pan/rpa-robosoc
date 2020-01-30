@@ -1,3 +1,8 @@
+########################################################################################################################
+#!!
+#! @description: Iterates through all existing mailboxes in the tenant (the mailboxes are listed explicitly), lists all their e-mails (up to 100) from all folders and tries to parse them.
+#!!#
+########################################################################################################################
 namespace: robosoc.office365.message.test
 flow:
   name: test_all_mailboxes
