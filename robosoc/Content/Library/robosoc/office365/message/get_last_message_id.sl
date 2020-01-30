@@ -1,4 +1,4 @@
-namespace: robosec.office365.message
+namespace: robosoc.office365.message
 flow:
   name: get_last_message_id
   inputs:

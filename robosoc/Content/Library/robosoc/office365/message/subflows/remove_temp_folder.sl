@@ -1,4 +1,4 @@
-namespace: robosec.office365.message.subflows
+namespace: robosoc.office365.message.subflows
 operation:
   name: remove_temp_folder
   inputs:

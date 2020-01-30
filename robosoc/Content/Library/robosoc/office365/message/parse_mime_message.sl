@@ -1,4 +1,4 @@
-namespace: robosec.office365.message
+namespace: robosoc.office365.message
 operation:
   name: parse_mime_message
   inputs:
